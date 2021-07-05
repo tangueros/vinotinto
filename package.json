@@ -1,0 +1,75 @@
+{
+  "name": "vinotinto",
+  "version": "0.0.1",
+  "description": "NPM Dance Animation WebGL Viewer",
+  "keywords": [
+    "animation"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": "git@github.com:tangueros/vinotinto.git",
+  "author": "KaceO <kaceong@gmail.com> (https://github.com/kaceo)",
+  "homepage": "https://data.tangueros.org",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "prebuild": "tsc --noEmit && yarn build-shaders",
+    "postbuild": "yarn build-docs",
+    "build-docs": "typedoc src/index.ts --includeVersion --name 'Geppetto Player'",
+    "build-shaders": "bin/minifyShader.ts src/shaders/fragmentShader.frag && bin/minifyShader.ts src/shaders/vertexShader.vert",
+    "build": "parcel build ./src/index.ts",
+    "test": "jest",
+    "lint": "eslint src/",
+    "presize": "yarn build",
+    "size": "size-limit"
+  },
+  "eslintConfig": {
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended"
+    ]
+  },
+  "size-limit": [
+    {
+      "path": "dist/index.js",
+      "webpack": false
+    }
+  ],
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
+  },
+  "devDependencies": {
+    "prettier": "^2.2.1",
+    "eslint": "^7.23.0",
+    "@typescript-eslint/eslint-plugin": "^4.20.0",
+    "@typescript-eslint/parser": "^4.20.0",
+    "typedoc": "^0.20.34",
+    "typescript": "^4.2.3",
+  },
+  "unused": {
+    "@parcel/packager-ts": "2.0.0-beta.2",
+    "@parcel/transformer-glsl": "2.0.0-beta.2",
+    "@parcel/transformer-typescript-types": "2.0.0-beta.2",
+    "@size-limit/preset-small-lib": "^4.10.1",
+    "@types/jest": "^26.0.21",
+    "size-limit": "^4.10.1",
+    "ts-jest": "^26.5.4",
+    "ts-node": "^9.1.1",
+    "jest": "^26.6.3",
+    "parcel": "^2.0.0-beta.2",
+    "webpack-glsl-minify": "^1.4.2"
+  },
+  "files": [
+    "dist/"
+  ],
+  "browserslist": [
+    "chrome 87",
+    "firefox 78"
+  ]
+}
